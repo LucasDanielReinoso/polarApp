@@ -1,4 +1,4 @@
-// 1. Importaciones usando la CDN de Firebase (versión 10.8.0)
+// app.js
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
 import { 
   getFirestore, 
@@ -14,19 +14,14 @@ import {
   serverTimestamp 
 } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-// 2. Tus credenciales reales de Hielos Polar
-const firebaseConfig = {
-  apiKey: "AIzaSyDVDJNa3Waer5nJJ_mkG_jjc4wkN3XQNWI",
-  authDomain: "hielos-polar.firebaseapp.com",
-  projectId: "hielos-polar",
-  storageBucket: "hielos-polar.firebasestorage.app",
-  messagingSenderId: "529010081798",
-  appId: "1:529010081798:web:b5d7429af1efc049ed0387"
-};
+// Importas la configuración desde tu nuevo archivo
+import { firebaseConfig } from "./firebase-config.js";
 
-// 3. Inicializar Firebase y la base de datos Firestore
+// Inicializar Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+
+// ... resto de tu app.js igual
 
 // ... aquí continúa el resto del código de app.js que te pasé antes
 
