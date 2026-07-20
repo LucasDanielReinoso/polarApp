@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Control de Stock y Producción - Hielo</title>
+  <link rel="stylesheet" href="styles.css" />
+  <!-- Fuente Google Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/x-icon" href="favicon.png">
+
+  <!-- Favicon y Manifest PWA -->
+  <link rel="icon" type="image/png" sizes="512x512" href="favicon.png">
+  <link rel="apple-touch-icon" href="favicon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#0b132b">
+
+</head>
+<body>
+  <div class="app-container">
+    <!-- Header -->
+    <header class="header">
+      <div class="brand">
+        <div class="logo-icon">⛄</div>
+        <div>
+          <h1>Panel de Seguimiento</h1>
+          <p class="subtitle">Gestión de producción, stock y ventas de hielo</p>
+        </div>
+      </div>
+      <div class="config-price-card">
+        <label for="unit-price">Precio por Bolsa ($):</label>
+        <div class="price-input-group">
+          <input type="number" id="unit-price" step="0.01" value="0.00" />
+          <button id="btn-update-price" class="btn btn-secondary">Actualizar</button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Metrics Dashboard -->
+    <section class="metrics-grid">
+      <div class="card metric-card">
+        <span class="metric-label">Stock de Bolsas Vacías</span>
+        <span class="metric-value" id="val-empty-bags">0</span>
+        <span class="metric-sub">Insumo disponible</span>
+      </div>
+
+      <div class="card metric-card">
+        <span class="metric-label">Stock de Hielo Listo</span>
+        <span class="metric-value highlight" id="val-ice-stock">0</span>
+        <span class="metric-sub">Bolsas congeladas</span>
+      </div>
+
+      <div class="card metric-card">
+        <span class="metric-label">Producidas Total</span>
+        <span class="metric-value" id="val-produced-today">0</span>
+        <span class="metric-sub">Bolsas cargadas hoy</span>
+      </div>
+
+      <div class="card metric-card">
+        <span class="metric-label">Vendidas Total</span>
+        <span class="metric-value" id="val-sold-today">0</span>
+        <span class="metric-sub" id="val-revenue-today">Subtotal: $0.00</span>
+      </div>
+
+      <div class="card metric-card total-card">
+        <span class="metric-label">Recaudación Total Acumulada</span>
+        <span class="metric-value total-highlight" id="val-total-revenue">$0</span>
+        <span class="metric-sub">Ingreso histórico total</span>
+      </div>
+    </section>
+
+    <!-- Operations Section -->
+    <main class="operations-grid">
+      <!-- Record Production -->
+      <section class="card form-card">
+        <h2>Registrar Producción Diaria</h2>
+        <p class="form-desc">Incrementa el stock de hielo y descuenta las bolsas vacías utilizadas.</p>
+        <form id="form-production">
+          <div class="form-group">
+            <label for="input-produced">Bolsas Producidas</label>
+            <input type="number" id="input-produced" placeholder="Ej: 50" min="1" required />
+          </div>
+          <button type="submit" class="btn btn-primary">Cargar Producción</button>
+        </form>
+      </section>
+
+      <!-- Record Sales -->
+      <section class="card form-card">
+        <h2>Registrar Venta</h2>
+        <p class="form-desc">Descuenta bolsas del stock e incrementa el registro de ventas y recaudación.</p>
+        <form id="form-sales">
+          <div class="form-group">
+            <label for="input-sold">Bolsas Vendidas</label>
+            <input type="number" id="input-sold" placeholder="Ej: 10" min="1" required />
+          </div>
+          <button type="submit" class="btn btn-success">Registrar Venta</button>
+        </form>
+      </section>
+
+      <!-- Re-stock Empty Bags -->
+      <section class="card form-card full-width">
+        <h2>Ingreso de Insumos (Bolsas Vacías)</h2>
+        <p class="form-desc">Añade stock de bolsas vacías al inventario general.</p>
+        <form id="form-add-empty-bags" class="inline-form">
+          <div class="form-group">
+            <label for="input-empty-bags">Cantidad de Bolsas Recibidas</label>
+            <input type="number" id="input-empty-bags" placeholder="Ej: 500" min="1" required />
+          </div>
+          <button type="submit" class="btn btn-outline">Agregar Insumos</button>
+        </form>
+      </section>
+    </main>
+
+    <!-- Transactions Log Section -->
+    <section class="card history-card full-width">
+      <div class="history-header">
+        <h2>Historial de Transacciones / Registro de Actividad</h2>
+        <span class="live-indicator"><span class="dot"></span> En vivo</span>
+      </div>
+      <div class="table-wrapper">
+        <ul class="activity-list" id="activity-list">
+          <li class="empty-state">No hay registros de actividad aún.</li>
+        </ul>
+      </div>
+    </section>
+  </div>
+
+  <!-- Firebase App Script -->
+  <script type="module" src="app.js"></script>
+  
+  
+</body>
+</html>

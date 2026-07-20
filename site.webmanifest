@@ -1,0 +1,17 @@
+{
+    "name": "Hielos Polar - Panel de Control",
+    "short_name": "Hielos Polar",
+    "start_url": "./index.html",
+    "display": "standalone",
+    "background_color": "#0b132b",
+    "theme_color": "#0b132b",
+    "orientation": "portrait",
+    "icons": [
+      {
+        "src": "favicon.png",
+        "sizes": "512x512",
+        "type": "image/png",
+        "purpose": "any maskable"
+      }
+    ]
+  }
